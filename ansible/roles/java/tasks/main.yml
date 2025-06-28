@@ -1,0 +1,24 @@
+---
+# tasks file for java role
+
+- name: Ensure Temurin repo is added
+  block:
+    - name: Add gpg key for Temurin PPA
+      ansible.builtin.apt_key:
+        url: 'https://packages.adoptium.net/artifactory/api/gpg/key/public'
+        state: present
+      become: true
+    - name: Add Temurin PPA repository
+      ansible.builtin.apt_repository:
+        repo: "deb https://packages.adoptium.net/artifactory/deb {{ ansible_lsb.codename }} main"
+        filename: "adoptium"
+        update_cache: yes
+        state: present
+      become: true
+
+- name: Install apt packages
+  ansible.builtin.apt:
+    name:
+      - "temurin-{{ java_version }}-jdk"
+    state: present
+  become: true

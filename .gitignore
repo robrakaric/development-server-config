@@ -1,0 +1,47 @@
+# Ansible
+*.retry
+*.log
+*.pyc
+__pycache__/
+
+# Vault password files
+.vault_pass
+vault_pass.txt
+
+# SSH keys
+*.pem
+*.key
+*.pub
+.ssh/
+
+# Molecule test output
+.molecule/
+
+# Editor/OS files
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# System files
+Thumbs.db
+
+# Backup files
+*~
+*.bak
+
+# Docker
+**/.env
+**/docker-compose.override.yml
+
+# Cloud provider credentials
+.aws/
+.gcp/
+.azure/

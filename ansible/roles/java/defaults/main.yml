@@ -1,0 +1,5 @@
+---
+# defaults file for development-server
+
+# Default Java version for the java role
+java_version: 21

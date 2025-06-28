@@ -1,0 +1,8 @@
+---
+- name: Configure development server
+  hosts: development-server
+  become: true
+  roles:
+    - java
+    - python
+    - node

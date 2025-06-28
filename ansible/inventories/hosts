@@ -1,0 +1,5 @@
+[all]
+localhost ansible_connection=local
+
+[development-server]
+development-server.lan
