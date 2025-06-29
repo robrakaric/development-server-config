@@ -3,7 +3,7 @@
   hosts: development-server
   become: true
   roles:
+    - docker
     - java
     - python
     - node
-    - docker

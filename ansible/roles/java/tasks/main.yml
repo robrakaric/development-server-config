@@ -5,14 +5,14 @@
   block:
     - name: Add gpg key for Temurin PPA
       ansible.builtin.apt_key:
-        url: 'https://packages.adoptium.net/artifactory/api/gpg/key/public'
+        url: "https://packages.adoptium.net/artifactory/api/gpg/key/public"
         state: present
       become: true
     - name: Add Temurin PPA repository
       ansible.builtin.apt_repository:
         repo: "deb https://packages.adoptium.net/artifactory/deb {{ ansible_lsb.codename }} main"
         filename: "adoptium"
-        update_cache: yes
+        update_cache: true
         state: present
       become: true
 
