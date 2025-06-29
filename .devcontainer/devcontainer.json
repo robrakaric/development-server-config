@@ -9,6 +9,7 @@
     "--hostname=ansible-dev-container"
   ],
   "mounts": [
+    // Bind mount .ssh directory so local SSH keys are available in the container
     "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind"
   ],
   "updateRemoteUserUID": true,
