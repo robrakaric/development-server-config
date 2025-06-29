@@ -10,11 +10,12 @@ To execute the playbook using your inventory and the `site.yml` playbook, run th
 export PRIVATE_KEY = "/path/to/your/private/key"
 export SSH_USER = "your_ssh_username"
 
-ansible-playbook -i ansible/inventories/hosts \
-  --private-key $PRIVATE_KEY \
-  --user $SSH_USER \
-  ansible/site.yml \
-  --ask-become-pass
+ansible-playbook \
+ansible/site.yml \
+--inventory-file ansible/inventories/hosts \
+--private-key $PRIVATE_KEY \
+--user $SSH_USER \
+--ask-become-pass
 ```
 
 ## Development
