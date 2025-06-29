@@ -8,6 +8,9 @@
     "/dev/fuse",
     "--hostname=ansible-dev-container"
   ],
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind"
+  ],
   "updateRemoteUserUID": true,
   "customizations": {
     "vscode": {
