@@ -3,6 +3,7 @@
 *.log
 *.pyc
 __pycache__/
+.ansible/
 
 # Vault password files
 .vault_pass
