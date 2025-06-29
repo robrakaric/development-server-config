@@ -1,4 +1,6 @@
-# Ansible Project
+# development-server-config
+
+My `ansible` configuration for a development server
 
 ## How to Run
 
@@ -16,3 +18,10 @@ ansible-playbook -i ansible/inventories/hosts \
 # Replace `YOUR_SSH_USER` with the SSH username for your target hosts.
 
 This will apply the `development-server` role to all hosts defined in your inventory.
+
+## Development
+
+```
+pip install -r requirements.txt
+```
+
