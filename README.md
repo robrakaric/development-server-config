@@ -19,6 +19,18 @@ site.yml \
 
 ## Development
 
-```
+### local
+
+```sh
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+### devcontainer
+
+Devcontainer will bind your current local user's `.ssh` directory to `/root/.ssh` in the devcontainer using `ghcr.io/ansible/community-ansible-dev-tools:latest` image.
+
+```sh
+"source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind"
 ```
