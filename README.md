@@ -11,7 +11,7 @@ export PRIVATE_KEY = "/path/to/your/private/key"
 export SSH_USER = "your_ssh_username"
 
 ansible-playbook \
-ansible/site.yml \
+site.yml \
 --inventory-file ansible/inventories/hosts \
 --private-key $PRIVATE_KEY \
 --user $SSH_USER \
