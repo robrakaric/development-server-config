@@ -12,7 +12,6 @@ export SSH_USER = "your_ssh_username"
 
 ansible-playbook \
 site.yml \
---inventory-file ansible/inventories/hosts \
 --private-key $PRIVATE_KEY \
 --user $SSH_USER \
 --ask-become-pass
