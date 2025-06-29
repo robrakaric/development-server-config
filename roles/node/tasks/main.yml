@@ -1,9 +1,9 @@
 ---
 # tasks file for node role
 
-- name: Install apt packages
-  ansible.builtin.apt:
+- name: Install node snap package
+  community.general.snap:
     name:
-      - nodejs
+      - node
+    classic: true
     state: present
-  become: true
