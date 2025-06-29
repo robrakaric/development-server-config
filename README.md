@@ -39,4 +39,4 @@ Devcontainer will bind your current local user's `.ssh` directory to `/root/.ssh
 
 ### collection index
 
-`https://docs.ansible.com/ansible/latest/collections/index.html`
+https://docs.ansible.com/ansible/latest/collections/index.html
