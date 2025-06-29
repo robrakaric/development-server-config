@@ -8,20 +8,19 @@ To execute the playbook using your inventory and the `site.yml` playbook, run th
 
 ```sh
 ansible-playbook -i ansible/inventories/hosts \
-  --private-key ~/.ssh/YOUR_PRIVATE_KEY \
+  --private-key YOUR_PRIVATE_KEY \
   -u YOUR_SSH_USER \
-  ansible/playbooks/site.yml \
+  ansible/site.yml \
   --ask-become-pass
 ```
 
-# Replace `~/.ssh/YOUR_PRIVATE_KEY` with your SSH private key path.
-# Replace `YOUR_SSH_USER` with the SSH username for your target hosts.
+- Replace `YOUR_PRIVATE_KEY` with your SSH private key path.
+- Replace `YOUR_SSH_USER` with the SSH username for your target hosts.
 
-This will apply the `development-server` role to all hosts defined in your inventory.
+This will apply the `development-server` roles to all hosts defined in your inventory.
 
 ## Development
 
 ```
 pip install -r requirements.txt
 ```
-
