@@ -34,3 +34,9 @@ Devcontainer will bind your current local user's `.ssh` directory to `/root/.ssh
 ```sh
 "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind"
 ```
+
+## Ansible
+
+### collection index
+
+`https://docs.ansible.com/ansible/latest/collections/index.html`
