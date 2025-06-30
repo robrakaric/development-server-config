@@ -1,0 +1,9 @@
+---
+
+- name: Ghostty terminal setup
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'export TERM=xterm-256color'
+    create: yes
+    state: present
+  become: false

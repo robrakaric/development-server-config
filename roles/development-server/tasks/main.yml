@@ -1,0 +1,8 @@
+---
+# tasks file for docker
+
+- name: Ghostty terminal setup
+  ansible.builtin.import_tasks: ./ghostty.yml
+
+- name: Install Java development dependencies
+  ansible.builtin.import_tasks: ./java.yml

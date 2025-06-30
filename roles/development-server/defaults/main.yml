@@ -1,2 +1,4 @@
 ---
 # defaults file for development-server
+
+java_version: 21

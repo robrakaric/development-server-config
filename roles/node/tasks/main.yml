@@ -1,9 +1,0 @@
----
-# tasks file for node role
-
-- name: Install node snap package
-  community.general.snap:
-    name:
-      - node
-    classic: true
-    state: present

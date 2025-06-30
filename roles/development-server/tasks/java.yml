@@ -1,0 +1,16 @@
+---
+# tasks file for java role
+
+- name: Ensure Temurin repo is added
+  ansible.builtin.template:
+    src: adoptium.repo.j2
+    dest: /etc/yum.repos.d/adoptium.repo
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install Temurin JDK
+  ansible.builtin.dnf:
+    name: "temurin-{{ java_version }}-jdk"
+    state: present
+  become: true

@@ -1,9 +1,0 @@
----
-# tasks file for python role
-
-- name: Install apt packages
-  ansible.builtin.apt:
-    name:
-      - python3
-    state: present
-  become: true

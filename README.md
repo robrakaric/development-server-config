@@ -7,8 +7,8 @@ My `ansible` configuration for a development server
 To execute the playbook using your inventory and the `site.yml` playbook, run the following command from the base of the repository:
 
 ```sh
-export PRIVATE_KEY = "/path/to/your/private/key"
-export SSH_USER = "your_ssh_username"
+export PRIVATE_KEY="/path/to/your/private/key"
+export SSH_USER="your_ssh_username"
 
 ansible-playbook \
 site.yml \
