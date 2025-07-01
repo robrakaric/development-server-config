@@ -7,9 +7,6 @@
 - name: Update all packages
   ansible.builtin.import_tasks: ./update.yml
 
-- name: WireGuard setup
-  ansible.builtin.import_tasks: ./wireguard.yml
-
 - name: Ghostty terminal setup
   ansible.builtin.import_tasks: ./ghostty.yml
 
