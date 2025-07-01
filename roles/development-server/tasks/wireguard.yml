@@ -1,0 +1,84 @@
+---
+
+- name: Install WireGuard
+  ansible.builtin.dnf:
+    name: wireguard-tools
+    state: present
+
+- name: Ensure key directory exists (0700)
+  ansible.builtin.file:
+    path: "{{ wg_key_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+
+- name: Generate client private key (once, 0600)
+  ansible.builtin.shell: |
+    umask 077
+    wg genkey > "{{ wg_private_key }}"
+  args:
+    creates: "{{ wg_private_key }}"   # idempotence gate
+  register: priv_out
+  no_log: true                     # hide key material
+
+- name: Generate matching public key (once, 0644)
+  ansible.builtin.shell: |
+    cat "{{ wg_private_key }}" | wg pubkey > "{{ wg_public_key }}"
+  args:
+    creates: "{{ wg_public_key }}"    # idempotence gate
+  when: priv_out is changed or (wg_public_key is undefined)
+  register: pub_out
+  no_log: true
+
+- name: Enforce permissions on key files
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - { path: "{{ wg_private_key }}", mode: "0600" }
+    - { path: "{{ wg_public_key }}",  mode: "0644" }
+
+- name: Slurp private key from remote
+  ansible.builtin.slurp:
+    src: "{{ wg_private_key }}"
+  register: wg_private_key_content
+
+- name: Slurp peer public keys from remote
+  ansible.builtin.slurp:
+    src: "{{ item.public_key_path }}"
+  loop: "{{ wg_peers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  register: peer_public_keys
+
+- name: Deploy wg0.conf from template
+  ansible.builtin.template:
+    src: wg0.conf.j2
+    dest: "{{ wg_config_file }}"
+    owner: root
+    group: root
+    mode: "0600"
+  notify: Restart WireGuard
+  become: true
+
+- name: "Forward IPv4 packets"
+  ansible.builtin.sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present
+    reload: true
+  
+- name: "Forward IPv6 packets"
+  ansible.builtin.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: 1
+    state: present
+    reload: true
+
+- name: Add port 51820/udp to firewall
+  ansible.builtin.firewalld:
+    port: 51820/udp
+    permanent: true
+    state: enabled
+  when: ansible_os_family == 'RedHat'

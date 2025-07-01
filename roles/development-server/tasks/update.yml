@@ -1,0 +1,9 @@
+---
+
+# dnf update
+
+- name: Update all packages
+  ansible.builtin.dnf:
+    name: '*'
+    state: latest
+  when: ansible_os_family == 'RedHat'

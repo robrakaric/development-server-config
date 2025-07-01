@@ -1,8 +1,17 @@
 ---
-# tasks file for docker
+# main tasks file for development-server role
+
+- name: Ansible prerequisites
+  ansible.builtin.import_tasks: ./ansible-prerequisites.yml
+
+- name: Update all packages
+  ansible.builtin.import_tasks: ./update.yml
+
+- name: WireGuard setup
+  ansible.builtin.import_tasks: ./wireguard.yml
 
 - name: Ghostty terminal setup
   ansible.builtin.import_tasks: ./ghostty.yml
 
-- name: Install Java development dependencies
-  ansible.builtin.import_tasks: ./java.yml
+# - name: Install Java development dependencies
+#   ansible.builtin.import_tasks: ./java.yml

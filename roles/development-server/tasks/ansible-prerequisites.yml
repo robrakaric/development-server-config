@@ -1,0 +1,10 @@
+---
+
+- name: Ensure python3-libdnf5 is installed (for dnf module)
+  ansible.builtin.raw: dnf install -y python3-libdnf5
+  become: true
+  changed_when: false
+  failed_when: false
+  when:
+    - ansible_facts['os_family'] == 'RedHat'
+    - ansible_facts['distribution_major_version'] | int >= 9

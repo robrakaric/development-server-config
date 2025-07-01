@@ -1,0 +1,18 @@
+# WireGuard server configuration – rendered by Ansible
+# Interface section ---------------------------------------------------------
+[Interface]
+Address     = {{ wg_address }}
+ListenPort  = {{ wg_listen_port }}
+PrivateKey  = {{ wg_private_key_content.content | b64decode | trim }}
+PostUp   = firewall-cmd --zone=internal --add-interface=%i
+PostDown = firewall-cmd --zone=internal --remove-interface=%i
+
+{% for peer in wg_peers %}
+# Peer: {{ peer.name }}
+[Peer]
+PublicKey  = {{ peer_public_keys.results[loop.index0].content | b64decode | trim }}
+AllowedIPs = {{ peer.allowed_ips | join(', ') }}
+{%   if peer.persistent_keepalive is defined %}
+PersistentKeepalive = {{ peer.persistent_keepalive }}
+{%   endif %}
+{% endfor %}

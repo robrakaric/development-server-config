@@ -1,2 +1,7 @@
 ---
-# handlers file for docker
+# handlers file for development-server role
+
+- name: Restart WireGuard
+  ansible.builtin.service:
+    name: wg-quick@wg0
+    state: restarted

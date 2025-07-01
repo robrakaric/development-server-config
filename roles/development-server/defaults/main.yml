@@ -2,3 +2,21 @@
 # defaults file for development-server
 
 java_version: 21
+
+
+# wireguard
+
+wg_dir: "/etc/wireguard"
+wg_key_dir: "{{ wg_dir }}/keys"
+wg_private_key: "{{ wg_key_dir }}/server_private.key"
+wg_public_key: "{{ wg_key_dir }}/server_public.key"
+wg_config_file: "{{ wg_dir }}/wg0.conf"
+wg_address: "10.42.0.1/24"
+wg_listen_port: "51820"
+
+# don't forget to put the public keys in place on the server
+wg_peers:
+  - name: macbook
+    public_key_path: "{{ wg_key_dir }}/macbook_public.key"
+    allowed_ips: ["10.42.0.2/32"]
+    persistent_keepalive: 25
