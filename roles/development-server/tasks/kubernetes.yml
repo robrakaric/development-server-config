@@ -1,0 +1,5 @@
+- name: Install K9s
+  ansible.builtin.dnf:
+    name: k9s
+    state: present
+  become: true
