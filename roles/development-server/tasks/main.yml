@@ -7,6 +7,9 @@
 - name: Update all packages
   ansible.builtin.import_tasks: ./update.yml
 
+- name: Kubernetes
+  ansible.builtin.import_tasks: ./kubernetes.yml
+
 - name: Ghostty terminal setup
   ansible.builtin.import_tasks: ./ghostty.yml
 
