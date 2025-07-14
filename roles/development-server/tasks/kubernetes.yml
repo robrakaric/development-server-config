@@ -1,3 +1,24 @@
+- name: Download k0s install script
+  ansible.builtin.get_url:
+    url: https://get.k0s.sh
+    dest: /tmp/get.k0s.sh
+    mode: '0755'
+
+- name: Run k0s install script
+  ansible.builtin.command: sh /tmp/get.k0s.sh
+  become: true
+  args:
+    creates: /usr/local/bin/k0s
+
+- name: Open firewall for kubernetes api
+  ansible.posix.firewalld:
+    port: 6443/tcp
+    permanent: true
+    state: enabled
+  become: true
+  notify:
+    - Reload firewalld
+
 - name: Ensure .kube directory exists
   ansible.builtin.file:
     path: ~/.kube
