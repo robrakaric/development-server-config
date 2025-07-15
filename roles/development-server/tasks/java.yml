@@ -11,6 +11,6 @@
 
 - name: Install Temurin JDK
   ansible.builtin.dnf:
-    name: "temurin-{{ java_version }}-jdk"
+    name: "temurin-{{ java.jdk_version }}-jdk"
     state: present
   become: true

@@ -10,14 +10,15 @@
   args:
     creates: /usr/local/bin/k0s
 
-- name: Open firewall for kubernetes api
+- name: Open kubernetes firewall ports
+  # https://kubernetes.io/docs/reference/networking/ports-and-protocols/
   ansible.posix.firewalld:
-    port: 6443/tcp
-    permanent: true
+    port: "{{ item.value }}"
     state: enabled
-  become: true
-  notify:
-    - Reload firewalld
+    permanent: true
+    zone: internal
+  with_dict: "{{ kubernetes.ports }}"
+  notify: Reload firewalld
 
 - name: Ensure .kube directory exists
   ansible.builtin.file:
