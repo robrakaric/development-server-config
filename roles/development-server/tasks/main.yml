@@ -7,6 +7,9 @@
 - name: Update all packages
   ansible.builtin.import_tasks: ./update.yml
 
+- name: Git configuration
+  ansible.builtin.import_tasks: ./git.yml
+
 - name: Kubernetes
   ansible.builtin.import_tasks: ./kubernetes.yml
 
