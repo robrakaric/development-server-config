@@ -15,3 +15,6 @@
 
 - name: Install Java development dependencies
   ansible.builtin.import_tasks: ./java.yml
+
+- name: Install Node development dependencies
+  ansible.builtin.import_tasks: ./node.yml
