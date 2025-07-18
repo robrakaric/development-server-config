@@ -10,6 +10,9 @@
 - name: Git configuration
   ansible.builtin.import_tasks: ./git.yml
 
+- name: GitHub CLI
+  ansible.builtin.import_tasks: ./github.yml
+
 - name: Podman configuration
   ansible.builtin.import_tasks: ./podman.yml
 
